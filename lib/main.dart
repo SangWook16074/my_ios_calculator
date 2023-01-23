@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_ios_calculator/src/main_src.dart';
+import 'package:flutter_ios_calculator/src/app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: const MainScreen(),
+      home: const App(),
     );
   }
 }
