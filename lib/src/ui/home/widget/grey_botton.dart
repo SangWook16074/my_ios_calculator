@@ -1,5 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/back_ground_btn.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/basic_btn.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/btn_color.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
+
+// 2023 - 01 - 31 오전 1시 30분 작성자 : 한상욱
+// 회색 버튼 클래스
+// enum GreyBtnType을 통해서 버튼의 종류를 확인하여 알맞은
+// Widget funtion을 switch case문으로 반환함.
 
 enum GreyBtnType { ALLCLEAR, PLUSNMINUS, PERCENT }
 
@@ -19,16 +27,9 @@ class _greyBtnState extends State<greyBtn> {
   Widget build(BuildContext context) {
     switch (widget.type) {
       case GreyBtnType.PLUSNMINUS:
-        return _buttonETC(Icon(
-          Icons.plus_one,
-          color: Colors.black,
-        ));
-
+        return _buttonETC(BtnIconType.plusAndMinus);
       case GreyBtnType.PERCENT:
-        return _buttonETC(Icon(
-          Icons.percent,
-          color: Colors.black,
-        ));
+        return _buttonETC(BtnIconType.percent);
       case GreyBtnType.ALLCLEAR:
         return _buttonAllClear();
     }
@@ -37,23 +38,17 @@ class _greyBtnState extends State<greyBtn> {
   Widget _buttonAllClear() {
     return Stack(
       children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width / 4 - 20,
-          height: MediaQuery.of(context).size.width / 4 - 20,
-          child: CupertinoButton(
-            color: CupertinoColors.systemGrey,
-            padding: const EdgeInsets.all(8.0),
-            borderRadius: BorderRadius.circular(100),
-            child: Text(
-              'AC',
-              style: TextStyle(
-                  fontSize: 30,
-                  color: CupertinoColors.black,
-                  fontWeight: FontWeight.w500),
-            ),
-            onPressed: () {},
+        BackGroundBtn(),
+        BasicBtn(
+          color: BtnColor.silver,
+          child: Text(
+            'AC',
+            style: TextStyle(
+                fontSize: 30,
+                color: CupertinoColors.black,
+                fontWeight: FontWeight.w500),
           ),
-        ),
+        )
       ],
     );
   }
@@ -61,17 +56,8 @@ class _greyBtnState extends State<greyBtn> {
   Widget _buttonETC(Icon icon) {
     return Stack(
       children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width / 4 - 20,
-          height: MediaQuery.of(context).size.width / 4 - 20,
-          child: CupertinoButton(
-            color: CupertinoColors.systemGrey,
-            padding: const EdgeInsets.all(8.0),
-            borderRadius: BorderRadius.circular(100),
-            child: icon,
-            onPressed: () {},
-          ),
-        ),
+        BackGroundBtn(),
+        BasicBtn(color: BtnColor.silver, child: icon),
       ],
     );
   }

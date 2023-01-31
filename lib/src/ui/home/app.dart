@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/grey_botton.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/orange_btn.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -11,9 +13,6 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    final double resultHeight = MediaQuery.of(context).size.width;
-    final double buttonSize = MediaQuery.of(context).size.width / 4;
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
@@ -55,6 +54,7 @@ class _AppState extends State<App> {
         ),
         greyBtn(type: GreyBtnType.PLUSNMINUS),
         greyBtn(type: GreyBtnType.PERCENT),
+        OrangeBtn(icon: BtnIconType.divide),
       ],
     );
   }
