@@ -64,7 +64,12 @@ class _AppState extends State<App> {
 
   // 버튼 두번째 줄
   Widget _buttonsRow2() {
-    return Container();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [],
+      ),
+    );
   }
 
   // 버튼 세번째 줄
