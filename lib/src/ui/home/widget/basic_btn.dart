@@ -3,6 +3,7 @@
 // 모든 버튼들의 기본이 되는 틀 역할
 // 중복되는 소스를 방지하면서 클린 아키텍처를 도와줌.
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 class BasicBtn extends StatefulWidget {
   final Color color;
@@ -14,11 +15,13 @@ class BasicBtn extends StatefulWidget {
 }
 
 class _BasicBtnState extends State<BasicBtn> {
+  final double _btnLength = Get.size.width / 4 - 15;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 4 - 20,
-      height: MediaQuery.of(context).size.width / 4 - 20,
+      width: _btnLength,
+      height: _btnLength,
       child: CupertinoButton(
         color: widget.color,
         padding: const EdgeInsets.all(8.0),

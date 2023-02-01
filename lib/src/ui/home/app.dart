@@ -15,47 +15,50 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            _result(),
-            _buttonsRow1(),
-            _buttonsRow2(),
-            _buttonsRow3(),
-            _buttonsRow4(),
-            _buttonsRow5(),
-          ],
-        ),
+      body: Column(
+        children: [
+          _result(),
+          _buttonsRow1(),
+          _buttonsRow2(),
+          _buttonsRow3(),
+          _buttonsRow4(),
+          _buttonsRow5(),
+        ],
       ),
     );
   }
 
   // 계산기 화면을 나타내는 위젯
   Widget _result() {
-    return Container(
-      height: MediaQuery.of(context).size.height / 3,
-      alignment: Alignment.bottomRight,
-      child: Text(
-        'result',
-        style: TextStyle(color: Colors.white, fontSize: 40),
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        height: MediaQuery.of(context).size.height / 3,
+        alignment: Alignment.bottomRight,
+        child: Text(
+          'result',
+          style: TextStyle(color: Colors.white, fontSize: 40),
+        ),
       ),
     );
   }
 
   // 버튼 첫번째 줄
   Widget _buttonsRow1() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        greyBtn(
-          type: GreyBtnType.ALLCLEAR,
-        ),
-        greyBtn(type: GreyBtnType.PLUSNMINUS),
-        greyBtn(type: GreyBtnType.PERCENT),
-        OrangeBtn(icon: BtnIconType.divide),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          greyBtn(
+            type: GreyBtnType.ALLCLEAR,
+          ),
+          greyBtn(type: GreyBtnType.PLUSNMINUS),
+          greyBtn(type: GreyBtnType.PERCENT),
+          OrangeBtn(icon: BtnIconType.divide),
+        ],
+      ),
     );
   }
 

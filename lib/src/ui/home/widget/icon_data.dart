@@ -5,40 +5,44 @@
 import 'package:flutter/cupertino.dart';
 
 class BtnIconType {
+  static double _iconSize = 35.0;
+  static Color _greyBtnColor = CupertinoColors.black;
+  static Color _orangeBtnColor = CupertinoColors.white;
+
   static Icon get plusAndMinus => Icon(
         CupertinoIcons.plus_slash_minus,
-        size: 35,
-        color: CupertinoColors.black,
+        size: _iconSize,
+        color: _greyBtnColor,
       );
 
   static Icon get percent => Icon(
         CupertinoIcons.percent,
-        size: 35,
-        color: CupertinoColors.black,
+        size: _iconSize,
+        color: _greyBtnColor,
       );
   static Icon get plus => Icon(
         CupertinoIcons.plus,
-        size: 35,
-        color: CupertinoColors.white,
+        size: _iconSize,
+        color: _orangeBtnColor,
       );
   static Icon get minus => Icon(
         CupertinoIcons.minus,
-        size: 35,
-        color: CupertinoColors.white,
+        size: _iconSize,
+        color: _orangeBtnColor,
       );
   static Icon get multiply => Icon(
         CupertinoIcons.multiply,
-        size: 35,
-        color: CupertinoColors.white,
+        size: _iconSize,
+        color: _orangeBtnColor,
       );
   static Icon get divide => Icon(
         CupertinoIcons.divide,
-        size: 35,
-        color: CupertinoColors.white,
+        size: _iconSize,
+        color: _orangeBtnColor,
       );
   static Icon get equal => Icon(
         CupertinoIcons.plus,
-        size: 35,
-        color: CupertinoColors.white,
+        size: _iconSize,
+        color: _orangeBtnColor,
       );
 }
