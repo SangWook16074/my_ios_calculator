@@ -1,0 +1,78 @@
+// 2023 - 02 - 02 오전 01:57 작성자 : 한상욱
+// 숫자와 .을 표현하는 검정색 버튼 클래스
+// enum 클래스를 통해서 숫자에 따른 모양과 child 프로퍼티 구분
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/basic_btn.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/btn_color.dart';
+
+enum BlackBtnType {
+  ONE,
+  TWO,
+  THREE,
+  FOUR,
+  FIVE,
+  SIX,
+  SEVEN,
+  EIGHT,
+  NINE,
+  ZERO,
+  DOT
+}
+
+class BlackBtn extends StatelessWidget {
+  final BlackBtnType type;
+  const BlackBtn({super.key, required this.type});
+
+  @override
+  Widget build(BuildContext context) {
+    switch (type) {
+      case BlackBtnType.ONE:
+        return _numberBtn('1');
+
+      case BlackBtnType.TWO:
+        return _numberBtn('2');
+
+      case BlackBtnType.THREE:
+        return _numberBtn('3');
+
+      case BlackBtnType.FOUR:
+        return _numberBtn('4');
+
+      case BlackBtnType.FIVE:
+        return _numberBtn('5');
+
+      case BlackBtnType.SIX:
+        return _numberBtn('6');
+
+      case BlackBtnType.SEVEN:
+        return _numberBtn('7');
+
+      case BlackBtnType.EIGHT:
+        return _numberBtn('8');
+
+      case BlackBtnType.NINE:
+        return _numberBtn('9');
+
+      case BlackBtnType.ZERO:
+        return _numberBtn('0');
+
+      case BlackBtnType.DOT:
+        return _numberBtn('.');
+    }
+  }
+
+  Widget _numberBtn(String number) {
+    return BasicBtn(child: _numberText(number), color: BtnColor.black);
+  }
+
+  Widget _numberText(String number) {
+    return Text(
+      number,
+      style: TextStyle(
+        fontSize: 25,
+        color: CupertinoColors.white,
+      ),
+    );
+  }
+}
