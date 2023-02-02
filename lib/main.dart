@@ -1,5 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_ios_calculator/src/main_src.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_ios_calculator/src/binding/init_binding.dart';
+import 'package:flutter_ios_calculator/src/ui/home/app.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark(),
       title: 'Flutter Demo',
-      home: const MainScreen(),
+      home: const App(),
+      initialBinding: InitBinding(),
     );
   }
 }
