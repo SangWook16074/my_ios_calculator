@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ios_calculator/src/binding/init_binding.dart';
 import 'package:flutter_ios_calculator/src/ui/home/app.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +16,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(),
       title: 'Flutter Demo',
       home: const App(),
-      initialBinding: InitBinding(),
     );
   }
 }
