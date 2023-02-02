@@ -4,7 +4,6 @@ import 'package:flutter_ios_calculator/src/ui/home/widget/black_btn.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/grey_botton.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/orange_btn.dart';
-import 'package:get/get.dart';
 
 // 작성일 : 2023년 01월 29일 오전 12:00 작성자 : 한상욱
 // 최종수정일 : 2023년 02월 03일 오전 수정자 : 한상욱
@@ -17,7 +16,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Get.find<WidgetSizeController>().appBackGroundColor,
+      backgroundColor: AppConfig.appBackGroundColor,
       body: Column(
         children: [
           _result(),
@@ -44,7 +43,7 @@ class App extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: Get.find<WidgetSizeController>().resultHeight,
+        height: AppConfig.resultHeight,
         alignment: Alignment.bottomRight,
         child: Text(
           'result',
