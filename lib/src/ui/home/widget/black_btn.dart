@@ -55,7 +55,7 @@ class BlackBtn extends StatelessWidget {
         return _numberBtn('9');
 
       case BlackBtnType.ZERO:
-        return _numberBtn('0');
+        return _zeroBtn('0');
 
       case BlackBtnType.DOT:
         return _numberBtn('.');
@@ -66,11 +66,19 @@ class BlackBtn extends StatelessWidget {
     return BasicBtn(child: _numberText(number), color: BtnColor.black);
   }
 
+  Widget _zeroBtn(String number) {
+    return BasicBtn(
+      color: BtnColor.black,
+      child: _numberText(number),
+      shape: BtnShape.FLAT,
+    );
+  }
+
   Widget _numberText(String number) {
     return Text(
       number,
       style: TextStyle(
-        fontSize: 25,
+        fontSize: 35,
         color: CupertinoColors.white,
       ),
     );

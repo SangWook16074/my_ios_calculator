@@ -1,39 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ios_calculator/src/controller/widget_size_controller.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/black_btn.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/grey_botton.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/orange_btn.dart';
+import 'package:get/get.dart';
 
-class App extends StatefulWidget {
+// 작성일 : 2023년 01월 29일 오전 12:00 작성자 : 한상욱
+// 최종수정일 : 2023년 02월 03일 오전 수정자 : 한상욱
+
+// 앱 화면 UI 클래스
+
+class App extends StatelessWidget {
   const App({super.key});
 
   @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Get.find<WidgetSizeController>().appBackGroundColor,
       body: Column(
         children: [
           _result(),
-          _buttonsRow1(),
-          _buttonsRow2(),
-          _buttonsRow3(),
-          _buttonsRow4(),
-          _buttonsRow5(),
+          _buttons(),
         ],
       ),
+    );
+  }
+
+  Widget _buttons() {
+    return Column(
+      children: [
+        _buttonsRow1(),
+        _buttonsRow2(),
+        _buttonsRow3(),
+        _buttonsRow4(),
+        _buttonsRow5(),
+      ],
     );
   }
 
   // 계산기 화면을 나타내는 위젯
   Widget _result() {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: MediaQuery.of(context).size.height / 3,
+        height: Get.find<WidgetSizeController>().resultHeight,
         alignment: Alignment.bottomRight,
         child: Text(
           'result',
@@ -67,23 +78,66 @@ class _AppState extends State<App> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
-        children: [],
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          BlackBtn(type: BlackBtnType.SEVEN),
+          BlackBtn(type: BlackBtnType.EIGHT),
+          BlackBtn(type: BlackBtnType.NINE),
+          OrangeBtn(icon: BtnIconType.multiply),
+        ],
       ),
     );
   }
 
   // 버튼 세번째 줄
   Widget _buttonsRow3() {
-    return Container();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          BlackBtn(type: BlackBtnType.FOUR),
+          BlackBtn(type: BlackBtnType.FIVE),
+          BlackBtn(type: BlackBtnType.SIX),
+          OrangeBtn(icon: BtnIconType.minus),
+        ],
+      ),
+    );
   }
 
   // 버튼 네번째 줄
   Widget _buttonsRow4() {
-    return Container();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          BlackBtn(type: BlackBtnType.ONE),
+          BlackBtn(type: BlackBtnType.TWO),
+          BlackBtn(type: BlackBtnType.THREE),
+          OrangeBtn(icon: BtnIconType.plus),
+        ],
+      ),
+    );
+    ;
   }
 
   // 버튼 다섯번째 줄
   Widget _buttonsRow5() {
-    return Container();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          BlackBtn(type: BlackBtnType.ZERO),
+          BlackBtn(type: BlackBtnType.DOT),
+          OrangeBtn(icon: BtnIconType.equal),
+        ],
+      ),
+    );
   }
 }

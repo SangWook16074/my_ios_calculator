@@ -1,32 +1,54 @@
-// 2023 - 02 - 01 오전 1:14 작성자 : 한상욱
+// 작성일 : 2023 - 02 - 01 오전 1:14 작성자 : 한상욱
+// 수정일 : 2023년 02월 03일 오전 1:25 수정자 : 한상욱
+
+// 최근 수정 내용 : 기존의 버튼을 제외하고 0을 위한 버튼을 구현하기 위해서
+// 새로운 enum 클래스 BtnShape를 생성해서 switch case를 이용해 특정 상황일 경우
+// flatButton이 등장하게 코드 수정
+
 // 기본 버튼 클래스
 // 모든 버튼들의 기본이 되는 틀 역할
 // 중복되는 소스를 방지하면서 클린 아키텍처를 도와줌.
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class BasicBtn extends StatefulWidget {
+enum BtnShape { CIRCLE, FLAT }
+
+class BasicBtn extends StatelessWidget {
+  final BtnShape? shape;
   final Color color;
   final Widget child;
-  const BasicBtn({super.key, required this.child, required this.color});
-
-  @override
-  State<BasicBtn> createState() => _BasicBtnState();
-}
-
-class _BasicBtnState extends State<BasicBtn> {
-  final double _btnLength = Get.size.width / 4 - 15;
+  const BasicBtn(
+      {super.key,
+      required this.child,
+      required this.color,
+      this.shape = BtnShape.CIRCLE});
 
   @override
   Widget build(BuildContext context) {
+    switch (shape) {
+      case BtnShape.CIRCLE:
+        final double _btnLength = Get.size.width / 4 - 15;
+        return _btn(_btnLength, _btnLength);
+
+      case BtnShape.FLAT:
+        final double _btnHeight = Get.size.width / 4 - 15;
+        final double _btnWidth = 2 * _btnHeight + 15;
+        return _btn(_btnHeight, _btnWidth);
+    }
+    return Container();
+  }
+
+  // 기존의 body는 높이와 너비를 요구하는 위젯 클래스로 재생성
+  Widget _btn(double height, double width) {
+    final double _btnLength = Get.size.width / 4 - 15;
     return SizedBox(
-      width: _btnLength,
-      height: _btnLength,
+      width: width,
+      height: height,
       child: CupertinoButton(
-        color: widget.color,
+        color: color,
         padding: const EdgeInsets.all(8.0),
         borderRadius: BorderRadius.circular(100),
-        child: widget.child,
+        child: child,
         onPressed: () {},
       ),
     );

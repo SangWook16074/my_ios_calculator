@@ -41,7 +41,7 @@ class BtnIconType {
         color: _orangeBtnColor,
       );
   static Icon get equal => Icon(
-        CupertinoIcons.plus,
+        CupertinoIcons.equal,
         size: _iconSize,
         color: _orangeBtnColor,
       );
