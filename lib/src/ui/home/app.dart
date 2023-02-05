@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ios_calculator/src/controller/widget_size_controller.dart';
+import 'package:flutter_ios_calculator/src/controller/calculator_controller.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/black_btn.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/grey_botton.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/orange_btn.dart';
+import 'package:get/get.dart';
 
 // 작성일 : 2023년 01월 29일 오전 12:00 작성자 : 한상욱
 // 최종수정일 : 2023년 02월 03일 오전 수정자 : 한상욱
 
 // 앱 화면 UI 클래스
 
-class App extends StatelessWidget {
+class App extends GetView<CalculatorController> {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppConfig.appBackGroundColor,
+      backgroundColor: Colors.black,
       body: Column(
         children: [
           _result(),
@@ -43,10 +44,10 @@ class App extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: AppConfig.resultHeight,
+        height: Get.size.height / 3,
         alignment: Alignment.bottomRight,
         child: Text(
-          'result',
+          controller.result.toString(),
           style: TextStyle(color: Colors.white, fontSize: 40),
         ),
       ),
