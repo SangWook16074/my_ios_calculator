@@ -6,8 +6,10 @@ import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/orange_btn.dart';
 import 'package:get/get.dart';
 
-// 작성일 : 2023년 01월 29일 오전 12:00 작성자 : 한상욱
-// 최종수정일 : 2023년 02월 03일 오전 수정자 : 한상욱
+// 작성일 : 2023년 01월 29일 오전 12:00
+// 작성자 : 한상욱
+// 최종 수정일 : 2023년 02월 05일 오전
+// 최종 수정자 : 한상욱
 
 // 앱 화면 UI 클래스
 
@@ -68,7 +70,10 @@ class App extends GetView<CalculatorController> {
           ),
           greyBtn(type: GreyBtnType.PLUSNMINUS),
           greyBtn(type: GreyBtnType.PERCENT),
-          OrangeBtn(icon: BtnIconType.divide),
+          OrangeBtn(
+            iconFront: BtnIconType.divide,
+            iconBack: BtnIconType.divideReverse,
+          ),
         ],
       ),
     );
@@ -85,7 +90,10 @@ class App extends GetView<CalculatorController> {
           BlackBtn(type: BlackBtnType.SEVEN),
           BlackBtn(type: BlackBtnType.EIGHT),
           BlackBtn(type: BlackBtnType.NINE),
-          OrangeBtn(icon: BtnIconType.multiply),
+          OrangeBtn(
+            iconFront: BtnIconType.multiply,
+            iconBack: BtnIconType.multplyReverse,
+          ),
         ],
       ),
     );
@@ -102,7 +110,10 @@ class App extends GetView<CalculatorController> {
           BlackBtn(type: BlackBtnType.FOUR),
           BlackBtn(type: BlackBtnType.FIVE),
           BlackBtn(type: BlackBtnType.SIX),
-          OrangeBtn(icon: BtnIconType.minus),
+          OrangeBtn(
+            iconFront: BtnIconType.minus,
+            iconBack: BtnIconType.minusReverse,
+          ),
         ],
       ),
     );
@@ -119,7 +130,10 @@ class App extends GetView<CalculatorController> {
           BlackBtn(type: BlackBtnType.ONE),
           BlackBtn(type: BlackBtnType.TWO),
           BlackBtn(type: BlackBtnType.THREE),
-          OrangeBtn(icon: BtnIconType.plus),
+          OrangeBtn(
+            iconFront: BtnIconType.plus,
+            iconBack: BtnIconType.plusReverse,
+          ),
         ],
       ),
     );
@@ -136,7 +150,10 @@ class App extends GetView<CalculatorController> {
         children: [
           BlackBtn(type: BlackBtnType.ZERO),
           BlackBtn(type: BlackBtnType.DOT),
-          OrangeBtn(icon: BtnIconType.equal),
+          OrangeBtn(
+            iconFront: BtnIconType.equal,
+            iconBack: BtnIconType.equal,
+          ),
         ],
       ),
     );
