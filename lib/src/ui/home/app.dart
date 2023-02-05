@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ios_calculator/src/controller/widget_size_controller.dart';
+import 'package:flutter_ios_calculator/src/controller/calculator_controller.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/black_btn.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/grey_botton.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/orange_btn.dart';
+import 'package:get/get.dart';
 
-// 작성일 : 2023년 01월 29일 오전 12:00 작성자 : 한상욱
-// 최종수정일 : 2023년 02월 03일 오전 수정자 : 한상욱
+// 작성일 : 2023년 01월 29일 오전 12:00
+// 작성자 : 한상욱
+// 최종 수정일 : 2023년 02월 05일 오전
+// 최종 수정자 : 한상욱
 
 // 앱 화면 UI 클래스
 
-class App extends StatelessWidget {
+class App extends GetView<CalculatorController> {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppConfig.appBackGroundColor,
+      backgroundColor: Colors.black,
       body: Column(
         children: [
           _result(),
@@ -43,11 +46,12 @@ class App extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: AppConfig.resultHeight,
+        height: Get.size.height / 3,
         alignment: Alignment.bottomRight,
         child: Text(
-          'result',
-          style: TextStyle(color: Colors.white, fontSize: 40),
+          controller.result.toString(),
+          style: TextStyle(
+              color: Colors.white, fontSize: 80, fontWeight: FontWeight.w200),
         ),
       ),
     );
@@ -66,7 +70,10 @@ class App extends StatelessWidget {
           ),
           greyBtn(type: GreyBtnType.PLUSNMINUS),
           greyBtn(type: GreyBtnType.PERCENT),
-          OrangeBtn(icon: BtnIconType.divide),
+          OrangeBtn(
+            iconFront: BtnIconType.divide,
+            iconBack: BtnIconType.divideReverse,
+          ),
         ],
       ),
     );
@@ -83,7 +90,10 @@ class App extends StatelessWidget {
           BlackBtn(type: BlackBtnType.SEVEN),
           BlackBtn(type: BlackBtnType.EIGHT),
           BlackBtn(type: BlackBtnType.NINE),
-          OrangeBtn(icon: BtnIconType.multiply),
+          OrangeBtn(
+            iconFront: BtnIconType.multiply,
+            iconBack: BtnIconType.multplyReverse,
+          ),
         ],
       ),
     );
@@ -100,7 +110,10 @@ class App extends StatelessWidget {
           BlackBtn(type: BlackBtnType.FOUR),
           BlackBtn(type: BlackBtnType.FIVE),
           BlackBtn(type: BlackBtnType.SIX),
-          OrangeBtn(icon: BtnIconType.minus),
+          OrangeBtn(
+            iconFront: BtnIconType.minus,
+            iconBack: BtnIconType.minusReverse,
+          ),
         ],
       ),
     );
@@ -117,7 +130,10 @@ class App extends StatelessWidget {
           BlackBtn(type: BlackBtnType.ONE),
           BlackBtn(type: BlackBtnType.TWO),
           BlackBtn(type: BlackBtnType.THREE),
-          OrangeBtn(icon: BtnIconType.plus),
+          OrangeBtn(
+            iconFront: BtnIconType.plus,
+            iconBack: BtnIconType.plusReverse,
+          ),
         ],
       ),
     );
@@ -134,7 +150,10 @@ class App extends StatelessWidget {
         children: [
           BlackBtn(type: BlackBtnType.ZERO),
           BlackBtn(type: BlackBtnType.DOT),
-          OrangeBtn(icon: BtnIconType.equal),
+          OrangeBtn(
+            iconFront: BtnIconType.equal,
+            iconBack: BtnIconType.equal,
+          ),
         ],
       ),
     );
