@@ -48,7 +48,8 @@ class App extends GetView<CalculatorController> {
         alignment: Alignment.bottomRight,
         child: Text(
           controller.result.toString(),
-          style: TextStyle(color: Colors.white, fontSize: 40),
+          style: TextStyle(
+              color: Colors.white, fontSize: 80, fontWeight: FontWeight.w200),
         ),
       ),
     );
