@@ -35,7 +35,7 @@ class OrangeBtn extends GetView<ButtonController> {
         padding: const EdgeInsets.all(8.0),
         borderRadius: BorderRadius.circular(100),
         child: iconBack,
-        onPressed: () {},
+        onPressed: () => controller.isBtnClose(),
       ),
     );
   }
@@ -43,7 +43,7 @@ class OrangeBtn extends GetView<ButtonController> {
   Widget _frontBtn() {
     return AnimatedOpacity(
       opacity: (controller.isClicked == false) ? 1.0 : 0.0,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 1000),
       child: SizedBox(
         width: _btnLength,
         height: _btnLength,
@@ -52,7 +52,7 @@ class OrangeBtn extends GetView<ButtonController> {
           padding: const EdgeInsets.all(8.0),
           borderRadius: BorderRadius.circular(100),
           child: iconFront,
-          onPressed: () => controller.toggle(),
+          onPressed: () => controller.isBtnActive(),
         ),
       ),
     );
