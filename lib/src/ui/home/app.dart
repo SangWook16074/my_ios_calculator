@@ -73,6 +73,7 @@ class App extends GetView<CalculatorController> {
           OrangeBtn(
             iconFront: BtnIconType.divide,
             iconBack: BtnIconType.divideReverse,
+            btnkey: BtnKey.DIVIDE,
           ),
         ],
       ),
@@ -93,6 +94,7 @@ class App extends GetView<CalculatorController> {
           OrangeBtn(
             iconFront: BtnIconType.multiply,
             iconBack: BtnIconType.multplyReverse,
+            btnkey: BtnKey.MULTIPLY,
           ),
         ],
       ),
@@ -113,6 +115,7 @@ class App extends GetView<CalculatorController> {
           OrangeBtn(
             iconFront: BtnIconType.minus,
             iconBack: BtnIconType.minusReverse,
+            btnkey: BtnKey.MINUS,
           ),
         ],
       ),
@@ -133,6 +136,7 @@ class App extends GetView<CalculatorController> {
           OrangeBtn(
             iconFront: BtnIconType.plus,
             iconBack: BtnIconType.plusReverse,
+            btnkey: BtnKey.PLUS,
           ),
         ],
       ),
@@ -153,6 +157,7 @@ class App extends GetView<CalculatorController> {
           OrangeBtn(
             iconFront: BtnIconType.equal,
             iconBack: BtnIconType.equal,
+            btnkey: BtnKey.EQUAL,
           ),
         ],
       ),
