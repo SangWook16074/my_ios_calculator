@@ -18,8 +18,37 @@ class ButtonAnimationController extends GetxController {
   bool get multiplyClicked => _multiplyClicked;
   bool get divideClicked => _divideClicked;
 
-  toggle() {
+  init() {
+    _plusClicked = false;
+    _minusClicked = false;
+    _multiplyClicked = false;
+    _divideClicked = false;
+    update();
+  }
+
+  plusToggle() {
+    init();
+    print(_plusClicked);
     _plusClicked = !_plusClicked;
+    print(_plusClicked);
+    update();
+  }
+
+  minusToggle() {
+    init();
+    _minusClicked = !_minusClicked;
+    update();
+  }
+
+  multiplyToggle() {
+    init();
+    _multiplyClicked = !_multiplyClicked;
+    update();
+  }
+
+  divideToggle() {
+    init();
+    _divideClicked = !_divideClicked;
     update();
   }
 }
