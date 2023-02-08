@@ -9,7 +9,7 @@
 // 모든 버튼들의 기본이 되는 틀 역할
 // 중복되는 소스를 방지하면서 클린 아키텍처를 도와줌.
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/btn_size.dart';
 
 enum BtnShape { CIRCLE, FLAT }
 
@@ -27,20 +27,16 @@ class BasicBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (shape) {
       case BtnShape.CIRCLE:
-        final double _btnLength = Get.size.width / 4 - 15;
-        return _btn(_btnLength, _btnLength);
-
+        return _btn(BtnSize.btnRound, BtnSize.btnRound);
       case BtnShape.FLAT:
-        final double _btnHeight = Get.size.width / 4 - 15;
-        final double _btnWidth = 2 * _btnHeight + 15;
-        return _btn(_btnHeight, _btnWidth);
+        return _btn(BtnSize.btnRound, BtnSize.btnFlatWidth);
+      default:
+        return Container();
     }
-    return Container();
   }
 
   // 기존의 body는 높이와 너비를 요구하는 위젯 클래스로 재생성
   Widget _btn(double height, double width) {
-    final double _btnLength = Get.size.width / 4 - 15;
     return SizedBox(
       width: width,
       height: height,
