@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ios_calculator/src/controller/button_animation_controller.dart';
 import 'package:flutter_ios_calculator/src/controller/calculator_controller.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/black_btn.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/grey_botton.dart';
@@ -10,7 +11,7 @@ import 'widget/equal_btn.dart';
 
 // 작성일 : 2023년 01월 29일 오전 12:00
 // 작성자 : 한상욱
-// 최종 수정일 : 2023년 02월 08일 오전 01:30
+// 최종 수정일 : 2023년 02월 08일 오후 08:06
 // 최종 수정자 : 한상욱
 
 // 앱 화면 UI 클래스
@@ -74,11 +75,15 @@ class App extends GetView<CalculatorController> {
           ),
           greyBtn(type: GreyBtnType.PLUSNMINUS),
           greyBtn(type: GreyBtnType.PERCENT),
-          OrangeBtn(
-            iconFront: BtnIconType.divide,
-            iconBack: BtnIconType.divideReverse,
-            btnkey: BtnKey.DIVIDE,
-          ),
+          GetBuilder<ButtonAnimationController>(builder: (_) {
+            return OrangeBtn(
+              iconFront: BtnIconType.divide,
+              iconBack: BtnIconType.divideReverse,
+              btnkey: BtnKey.DIVIDE,
+              isClicked: _.divideClicked,
+              onPressed: () => _.divideToggle(),
+            );
+          }),
         ],
       ),
     );
@@ -95,11 +100,15 @@ class App extends GetView<CalculatorController> {
           BlackBtn(type: BlackBtnType.SEVEN),
           BlackBtn(type: BlackBtnType.EIGHT),
           BlackBtn(type: BlackBtnType.NINE),
-          OrangeBtn(
-            iconFront: BtnIconType.multiply,
-            iconBack: BtnIconType.multplyReverse,
-            btnkey: BtnKey.MULTIPLY,
-          ),
+          GetBuilder<ButtonAnimationController>(builder: (_) {
+            return OrangeBtn(
+              iconFront: BtnIconType.multiply,
+              iconBack: BtnIconType.multplyReverse,
+              btnkey: BtnKey.MULTIPLY,
+              isClicked: _.multiplyClicked,
+              onPressed: () => _.multiplyToggle(),
+            );
+          }),
         ],
       ),
     );
@@ -116,11 +125,15 @@ class App extends GetView<CalculatorController> {
           BlackBtn(type: BlackBtnType.FOUR),
           BlackBtn(type: BlackBtnType.FIVE),
           BlackBtn(type: BlackBtnType.SIX),
-          OrangeBtn(
-            iconFront: BtnIconType.minus,
-            iconBack: BtnIconType.minusReverse,
-            btnkey: BtnKey.MINUS,
-          ),
+          GetBuilder<ButtonAnimationController>(builder: (_) {
+            return OrangeBtn(
+              iconFront: BtnIconType.minus,
+              iconBack: BtnIconType.minusReverse,
+              btnkey: BtnKey.MINUS,
+              isClicked: _.minusClicked,
+              onPressed: () => _.minusToggle(),
+            );
+          }),
         ],
       ),
     );
@@ -137,11 +150,15 @@ class App extends GetView<CalculatorController> {
           BlackBtn(type: BlackBtnType.ONE),
           BlackBtn(type: BlackBtnType.TWO),
           BlackBtn(type: BlackBtnType.THREE),
-          OrangeBtn(
-            iconFront: BtnIconType.plus,
-            iconBack: BtnIconType.plusReverse,
-            btnkey: BtnKey.PLUS,
-          ),
+          GetBuilder<ButtonAnimationController>(builder: (_) {
+            return OrangeBtn(
+              iconFront: BtnIconType.plus,
+              iconBack: BtnIconType.plusReverse,
+              btnkey: BtnKey.PLUS,
+              isClicked: _.plusClicked,
+              onPressed: () => _.plusToggle(),
+            );
+          }),
         ],
       ),
     );
