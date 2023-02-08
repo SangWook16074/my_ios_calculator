@@ -6,9 +6,11 @@ import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/orange_btn.dart';
 import 'package:get/get.dart';
 
+import 'widget/equal_btn.dart';
+
 // 작성일 : 2023년 01월 29일 오전 12:00
 // 작성자 : 한상욱
-// 최종 수정일 : 2023년 02월 05일 오전
+// 최종 수정일 : 2023년 02월 08일 오전 01:30
 // 최종 수정자 : 한상욱
 
 // 앱 화면 UI 클래스
@@ -48,11 +50,13 @@ class App extends GetView<CalculatorController> {
       child: Container(
         height: Get.size.height / 3,
         alignment: Alignment.bottomRight,
-        child: Text(
-          controller.result.toString(),
-          style: TextStyle(
-              color: Colors.white, fontSize: 80, fontWeight: FontWeight.w200),
-        ),
+        child: GetBuilder<CalculatorController>(builder: (_) {
+          return Text(
+            _.result.toString(),
+            style: TextStyle(
+                color: Colors.white, fontSize: 80, fontWeight: FontWeight.w200),
+          );
+        }),
       ),
     );
   }
@@ -154,11 +158,7 @@ class App extends GetView<CalculatorController> {
         children: [
           BlackBtn(type: BlackBtnType.ZERO),
           BlackBtn(type: BlackBtnType.DOT),
-          OrangeBtn(
-            iconFront: BtnIconType.equal,
-            iconBack: BtnIconType.equal,
-            btnkey: BtnKey.EQUAL,
-          ),
+          EqualBtn(),
         ],
       ),
     );
