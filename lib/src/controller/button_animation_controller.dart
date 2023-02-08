@@ -8,17 +8,17 @@ import 'package:get/get.dart';
 // 사측연산 버튼의 오파시티 애니메이션 효과를 위한 컨트롤러
 
 class ButtonAnimationController extends GetxController {
-  bool _plusClicked = false;
-  bool _minusClicked = false;
-  bool _multiplyClicked = false;
-  bool _divideClicked = false;
+  var _plusClicked = false;
+  var _minusClicked = false;
+  var _multiplyClicked = false;
+  var _divideClicked = false;
 
   bool get plusClicked => _plusClicked;
   bool get minusClicked => _minusClicked;
   bool get multiplyClicked => _multiplyClicked;
   bool get divideClicked => _divideClicked;
 
-  init() {
+  void init() {
     _plusClicked = false;
     _minusClicked = false;
     _multiplyClicked = false;
@@ -26,27 +26,25 @@ class ButtonAnimationController extends GetxController {
     update();
   }
 
-  plusToggle() {
+  void plusToggle() {
     init();
-    print(_plusClicked);
     _plusClicked = !_plusClicked;
-    print(_plusClicked);
     update();
   }
 
-  minusToggle() {
+  void minusToggle() {
     init();
     _minusClicked = !_minusClicked;
     update();
   }
 
-  multiplyToggle() {
+  void multiplyToggle() {
     init();
     _multiplyClicked = !_multiplyClicked;
     update();
   }
 
-  divideToggle() {
+  void divideToggle() {
     init();
     _divideClicked = !_divideClicked;
     update();

@@ -1,6 +1,6 @@
 // 생성일 : 2023년 02월 01일 오전 01:31
 // 작성자 : 한상욱
-// 수정일 : 2023년 02월 08일 오후 05:42
+// 수정일 : 2023년 02월 08일 오후 08:10
 // 수정자 : 한상욱
 
 // 사측연산을 하는 오렌지색 버튼 클래스
@@ -17,36 +17,16 @@ class OrangeBtn extends StatelessWidget {
   final Icon iconFront;
   final Icon iconBack;
   final BtnKey btnkey;
-  bool isClick = Get.find<ButtonAnimationController>().plusClicked;
-  Function()? onPressed = Get.find<ButtonAnimationController>().plusToggle();
-  OrangeBtn({
+  final bool isClicked;
+  final Function()? onPressed;
+  const OrangeBtn({
     super.key,
     required this.iconFront,
     required this.iconBack,
     required this.btnkey,
+    required this.isClicked,
+    required this.onPressed,
   });
-  // {
-  //   var controller = Get.find<ButtonAnimationController>();
-
-  //   switch (btnkey) {
-  //     case BtnKey.PLUS:
-  //       isClick = controller.plusClicked;
-  //       onPressed = controller.plusToggle();
-  //       break;
-  //     case BtnKey.MINUS:
-  //       isClick = controller.minusClicked;
-  //       onPressed = controller.minusToggle();
-  //       break;
-  //     case BtnKey.MULTIPLY:
-  //       isClick = controller.multiplyClicked;
-  //       onPressed = controller.multiplyToggle();
-  //       break;
-  //     case BtnKey.DIVIDE:
-  //       isClick = controller.divideClicked;
-  //       onPressed = controller.divideToggle();
-  //       break;
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +47,7 @@ class OrangeBtn extends StatelessWidget {
           color: BtnColor.white,
           padding: const EdgeInsets.all(8.0),
           borderRadius: BorderRadius.circular(100),
-          onPressed: () => onPressed,
+          onPressed: onPressed,
           child: iconBack,
         ),
       );
@@ -77,17 +57,18 @@ class OrangeBtn extends StatelessWidget {
   Widget _frontBtn() {
     return GetBuilder<ButtonAnimationController>(builder: (_) {
       return AnimatedOpacity(
-        opacity: (isClick == false) ? 1.0 : 0.0,
+        opacity: (isClicked) ? 0.0 : 1.0,
         duration: const Duration(milliseconds: 300),
         child: SizedBox(
           width: BtnSize.btnRound,
           height: BtnSize.btnRound,
           child: CupertinoButton(
+            pressedOpacity: null,
             color: BtnColor.orange,
             padding: const EdgeInsets.all(8.0),
             borderRadius: BorderRadius.circular(100),
             child: iconFront,
-            onPressed: () => onPressed,
+            onPressed: onPressed,
           ),
         ),
       );
