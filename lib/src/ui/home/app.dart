@@ -95,9 +95,18 @@ class App extends GetView<CalculatorController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BlackBtn(type: BlackBtnType.SEVEN),
-          BlackBtn(type: BlackBtnType.EIGHT),
-          BlackBtn(type: BlackBtnType.NINE),
+          BlackBtn(
+            type: BlackBtnType.SEVEN,
+            onPressed: () => controller.pushNumberBtn('7'),
+          ),
+          BlackBtn(
+            type: BlackBtnType.EIGHT,
+            onPressed: () => controller.pushNumberBtn('8'),
+          ),
+          BlackBtn(
+            type: BlackBtnType.NINE,
+            onPressed: () => controller.pushNumberBtn('9'),
+          ),
           OrangeBtn(
             iconFront: BtnIconType.multiply,
             iconBack: BtnIconType.multplyReverse,
@@ -118,9 +127,18 @@ class App extends GetView<CalculatorController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BlackBtn(type: BlackBtnType.FOUR),
-          BlackBtn(type: BlackBtnType.FIVE),
-          BlackBtn(type: BlackBtnType.SIX),
+          BlackBtn(
+            type: BlackBtnType.FOUR,
+            onPressed: () => controller.pushNumberBtn('4'),
+          ),
+          BlackBtn(
+            type: BlackBtnType.FIVE,
+            onPressed: () => controller.pushNumberBtn('5'),
+          ),
+          BlackBtn(
+            type: BlackBtnType.SIX,
+            onPressed: () => controller.pushNumberBtn('6'),
+          ),
           OrangeBtn(
             iconFront: BtnIconType.minus,
             iconBack: BtnIconType.minusReverse,
@@ -141,9 +159,18 @@ class App extends GetView<CalculatorController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BlackBtn(type: BlackBtnType.ONE),
-          BlackBtn(type: BlackBtnType.TWO),
-          BlackBtn(type: BlackBtnType.THREE),
+          BlackBtn(
+            type: BlackBtnType.ONE,
+            onPressed: () => controller.pushNumberBtn('1'),
+          ),
+          BlackBtn(
+            type: BlackBtnType.TWO,
+            onPressed: () => controller.pushNumberBtn('2'),
+          ),
+          BlackBtn(
+            type: BlackBtnType.THREE,
+            onPressed: () => controller.pushNumberBtn('3'),
+          ),
           OrangeBtn(
             iconFront: BtnIconType.plus,
             iconBack: BtnIconType.plusReverse,
@@ -165,7 +192,10 @@ class App extends GetView<CalculatorController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BlackBtn(type: BlackBtnType.ZERO),
+          BlackBtn(
+            type: BlackBtnType.ZERO,
+            onPressed: () => controller.pushNumberBtn('0'),
+          ),
           BlackBtn(type: BlackBtnType.DOT),
           EqualBtn(),
         ],

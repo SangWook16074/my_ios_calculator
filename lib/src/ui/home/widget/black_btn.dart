@@ -22,7 +22,8 @@ enum BlackBtnType {
 
 class BlackBtn extends StatelessWidget {
   final BlackBtnType type;
-  const BlackBtn({super.key, required this.type});
+  final Function()? onPressed;
+  const BlackBtn({super.key, required this.type, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
