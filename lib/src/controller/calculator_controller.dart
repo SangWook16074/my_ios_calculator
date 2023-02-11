@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 // 생성일 : 2023년 02월 05일 오후 09:52
 // 작성자 : 한상욱
-// 최종수정일 : 2023년 02월 11일
+// 최종수정일 : 2023년 02월 11일 오후 01:57
 // 최종수정자 : 한상욱
 
 // 계산함수로직을 분리하기위한 CalculatorController 클래스임.
@@ -55,6 +55,7 @@ class CalculatorController extends GetxController {
   }
 
   allClear() {
+    init();
     _result.value = '0';
   }
 

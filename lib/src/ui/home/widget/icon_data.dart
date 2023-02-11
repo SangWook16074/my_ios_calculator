@@ -70,4 +70,9 @@ class BtnIconType {
         size: _iconSize,
         color: _orangeBtnColor,
       );
+
+  static Text get allClear => Text(
+        'AC',
+        style: TextStyle(fontSize: 30, color: CupertinoColors.black),
+      );
 }

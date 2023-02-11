@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/basic_btn.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/btn_color.dart';
+import 'package:flutter_ios_calculator/src/ui/home/widget/btn_size.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
 
 // 생성일 : 2023년 01월 31일 오전 01:30
@@ -16,9 +17,11 @@ enum GreyBtnType { ALLCLEAR, PLUSNMINUS, PERCENT }
 
 class greyBtn extends StatelessWidget {
   final GreyBtnType type;
+  final Function()? onPressed;
   const greyBtn({
     Key? key,
     required this.type,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -34,14 +37,15 @@ class greyBtn extends StatelessWidget {
   }
 
   Widget _buttonAllClear() {
-    return BasicBtn(
-      color: BtnColor.silver,
-      child: Text(
-        'AC',
-        style: TextStyle(
-            fontSize: 30,
-            color: CupertinoColors.black,
-            fontWeight: FontWeight.w500),
+    return SizedBox(
+      width: BtnSize.btnRound,
+      height: BtnSize.btnRound,
+      child: CupertinoButton(
+        color: BtnColor.silver,
+        padding: const EdgeInsets.all(8.0),
+        borderRadius: BorderRadius.circular(100),
+        child: BtnIconType.allClear,
+        onPressed: onPressed,
       ),
     );
   }

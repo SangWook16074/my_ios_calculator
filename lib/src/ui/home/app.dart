@@ -71,6 +71,7 @@ class App extends GetView<CalculatorController> {
         children: [
           greyBtn(
             type: GreyBtnType.ALLCLEAR,
+            onPressed: () => controller.allClear(),
           ),
           greyBtn(type: GreyBtnType.PLUSNMINUS),
           greyBtn(type: GreyBtnType.PERCENT),
