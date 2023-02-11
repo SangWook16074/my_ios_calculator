@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      title: 'Flutter Demo',
       home: const App(),
       initialBinding: InitBinding(),
     );
