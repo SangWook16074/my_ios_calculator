@@ -10,7 +10,7 @@ import 'widget/equal_btn.dart';
 
 // 작성일 : 2023년 01월 29일 오전 12:00
 // 작성자 : 한상욱
-// 최종 수정일 : 2023년 02월 11일 오후 08:06
+// 최종 수정일 : 2023년 02월 12일 오후 11:06
 // 최종 수정자 : 한상욱
 
 // 앱 화면 UI 클래스
@@ -53,7 +53,7 @@ class App extends GetView<CalculatorController> {
         height: Get.size.height / 3,
         alignment: Alignment.bottomRight,
         child: Text(
-          controller.result.value,
+          controller.displayNumber.value,
           style: TextStyle(
               color: Colors.white, fontSize: 80, fontWeight: FontWeight.w200),
         ),

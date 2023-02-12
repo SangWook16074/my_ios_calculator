@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 // 생성일 : 2023년 02월 05일 오후 09:52
 // 작성자 : 한상욱
-// 최종수정일 : 2023년 02월 11일 오후 01:57
+// 최종수정일 : 2023년 02월 12일 오후 11:57
 // 최종수정자 : 한상욱
 
 // 계산함수로직을 분리하기위한 CalculatorController 클래스임.
@@ -12,12 +12,14 @@ import 'package:get/get.dart';
 class CalculatorController extends GetxController {
   var _firstNumber = '0'.obs;
   var _secondNumber = '0'.obs;
-  var _result = ''.obs;
+  var _displayNumber = 0.toString().obs;
+  var _result = '0'.obs;
   var _plusClicked = false.obs;
   var _minusClicked = false.obs;
   var _multiplyClicked = false.obs;
   var _divideClicked = false.obs;
 
+  RxString get displayNumber => _displayNumber;
   RxString get result => _result;
   RxString get firstNumber => _firstNumber;
   RxString get secondNumber => _secondNumber;
@@ -27,44 +29,52 @@ class CalculatorController extends GetxController {
   RxBool get multiplyClicked => _multiplyClicked;
   RxBool get divideClicked => _divideClicked;
 
-  void init() {
-    _plusClicked.value = false;
-    _minusClicked.value = false;
-    _multiplyClicked.value = false;
-    _divideClicked.value = false;
+  void initBtn(bool btnStatus) {
+    if (btnStatus == false) {
+      return;
+    }
+
+    btnStatus = !btnStatus;
+  }
+
+  void initDisplayNumber() {
+    _displayNumber.value = 0.toString();
   }
 
   // + 버튼 애니메이션 효과
   void plusToggle() {
-    init();
+    initBtn(_plusClicked.value);
     _plusClicked.value = !_plusClicked.value;
+    print('작동 !');
   }
+
+  // false -> false -> true -> false -> true
 
   // - 버튼 애니메이션 효과
   void minusToggle() {
-    init();
+    //initBtn();
     _minusClicked.value = !_minusClicked.value;
   }
 
   // * 버튼 애니메이션 효과
   void multiplyToggle() {
-    init();
+    //initBtn();
     _multiplyClicked.value = !_multiplyClicked.value;
   }
 
   // / 버튼 애니메이션 효과
   void divideToggle() {
-    init();
+    //initBtn();
     _divideClicked.value = !_divideClicked.value;
   }
 
-  pushPlus() {
+  void pushPlus() {
     plusToggle();
     _firstNumber.value = _result.value;
   }
 
   allClear() {
-    init();
+    //initBtn();
     _result.value = '';
   }
 
