@@ -6,7 +6,7 @@ import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
 
 // 생성일 : 2023년 01월 31일 오전 01:30
 // 작성자 : 한상욱
-// 최종 수정일 : 2023년 02월 08일 오후 08:26
+// 최종 수정일 : 2023년 02월 12일 오후 11:33
 // 최종 수정자 : 한상욱
 
 // 회색 버튼 클래스
@@ -17,11 +17,11 @@ enum GreyBtnType { ALLCLEAR, PLUSNMINUS, PERCENT }
 
 class greyBtn extends StatelessWidget {
   final GreyBtnType type;
-  final Function()? onPressed;
+  final Function() onPressed;
   const greyBtn({
     Key? key,
     required this.type,
-    this.onPressed,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -51,6 +51,6 @@ class greyBtn extends StatelessWidget {
   }
 
   Widget _buttonETC(Icon icon) {
-    return BasicBtn(color: BtnColor.silver, child: icon);
+    return BasicBtn(color: BtnColor.silver, onPressed: onPressed, child: icon);
   }
 }

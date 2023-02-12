@@ -10,14 +10,15 @@ import 'package:get/get.dart';
 // 메소드를 이용해서 계산을 진행함.
 
 class CalculatorController extends GetxController {
-  var _firstNumber = '0'.obs;
-  var _secondNumber = '0'.obs;
-  var _displayNumber = 0.toString().obs;
+  var _firstNumber = ''.obs;
+  var _secondNumber = ''.obs;
+  var _displayNumber = ''.obs;
   var _result = '0'.obs;
   var _plusClicked = false.obs;
   var _minusClicked = false.obs;
   var _multiplyClicked = false.obs;
   var _divideClicked = false.obs;
+  var _isFirst = true;
 
   RxString get displayNumber => _displayNumber;
   RxString get result => _result;
@@ -70,7 +71,7 @@ class CalculatorController extends GetxController {
 
   void pushPlus() {
     plusToggle();
-    _firstNumber.value = _result.value;
+    // _firstNumber.value = _result.value;
   }
 
   allClear() {
@@ -79,17 +80,19 @@ class CalculatorController extends GetxController {
   }
 
   void pushNumberBtn(String number) {
-    // if (_result.value != '' && _firstNumber.value != '') {
-    //   _result.value == '';
-    // }
+    if (_isFirst == true) {
+      _firstNumber.value = number;
+      _displayNumber.value += number.toString();
 
-    //_result.value += number;
-    print('1');
+      return;
+    }
+
+    print('숫자 버튼 클릭 !');
   }
 
   plus() {
-    _result.value = _firstNumber.value + _secondNumber.value;
-    return _result;
+    // _result.value = _firstNumber.value + _secondNumber.value;
+    // return _result;
   }
 
   minus() {}

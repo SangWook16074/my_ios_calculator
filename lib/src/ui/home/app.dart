@@ -53,7 +53,9 @@ class App extends GetView<CalculatorController> {
         height: Get.size.height / 3,
         alignment: Alignment.bottomRight,
         child: Text(
-          controller.displayNumber.value,
+          (controller.displayNumber.value == '')
+              ? '0'
+              : controller.displayNumber.value,
           style: TextStyle(
               color: Colors.white, fontSize: 80, fontWeight: FontWeight.w200),
         ),
@@ -73,8 +75,14 @@ class App extends GetView<CalculatorController> {
             type: GreyBtnType.ALLCLEAR,
             onPressed: () => controller.allClear(),
           ),
-          greyBtn(type: GreyBtnType.PLUSNMINUS),
-          greyBtn(type: GreyBtnType.PERCENT),
+          greyBtn(
+            type: GreyBtnType.PLUSNMINUS,
+            onPressed: () {},
+          ),
+          greyBtn(
+            type: GreyBtnType.PERCENT,
+            onPressed: () {},
+          ),
           OrangeBtn(
             iconFront: BtnIconType.divide,
             iconBack: BtnIconType.divideReverse,
@@ -196,8 +204,13 @@ class App extends GetView<CalculatorController> {
             type: BlackBtnType.ZERO,
             onPressed: () => controller.pushNumberBtn('0'),
           ),
-          BlackBtn(type: BlackBtnType.DOT),
-          EqualBtn(),
+          BlackBtn(
+            type: BlackBtnType.DOT,
+            onPressed: () {},
+          ),
+          EqualBtn(
+            onPressed: () {},
+          ),
         ],
       ),
     );

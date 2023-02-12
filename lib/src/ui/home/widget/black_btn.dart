@@ -1,4 +1,6 @@
-// 2023 - 02 - 02 오전 01:57 작성자 : 한상욱
+// 생성일 : 2023년 02월 02일 오전 01:57
+// 작성자 : 한상욱
+// 최종 수정일 : 2023년 02월 12일 오후 11:34
 // 숫자와 .을 표현하는 검정색 버튼 클래스
 // enum 클래스를 통해서 숫자에 따른 모양과 child 프로퍼티 구분
 
@@ -22,8 +24,8 @@ enum BlackBtnType {
 
 class BlackBtn extends StatelessWidget {
   final BlackBtnType type;
-  final Function()? onPressed;
-  const BlackBtn({super.key, required this.type, this.onPressed});
+  final Function() onPressed;
+  const BlackBtn({super.key, required this.type, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,11 @@ class BlackBtn extends StatelessWidget {
   }
 
   Widget _numberBtn(String number) {
-    return BasicBtn(child: _numberText(number), color: BtnColor.black);
+    return BasicBtn(
+      child: _numberText(number),
+      color: BtnColor.black,
+      onPressed: onPressed,
+    );
   }
 
   Widget _zeroBtn(String number) {
@@ -72,6 +78,7 @@ class BlackBtn extends StatelessWidget {
       color: BtnColor.black,
       child: _numberText(number),
       shape: BtnShape.FLAT,
+      onPressed: onPressed,
     );
   }
 
