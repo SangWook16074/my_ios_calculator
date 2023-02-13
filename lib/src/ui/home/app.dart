@@ -86,7 +86,6 @@ class App extends GetView<CalculatorController> {
           OrangeBtn(
             iconFront: BtnIconType.divide,
             iconBack: BtnIconType.divideReverse,
-            btnkey: BtnKey.DIVIDE,
             isClicked: controller.divideClicked.value,
             onPressed: () => controller.divideToggle(),
           ),
@@ -118,7 +117,6 @@ class App extends GetView<CalculatorController> {
           OrangeBtn(
             iconFront: BtnIconType.multiply,
             iconBack: BtnIconType.multplyReverse,
-            btnkey: BtnKey.MULTIPLY,
             isClicked: controller.multiplyClicked.value,
             onPressed: () => controller.multiplyToggle(),
           ),
@@ -150,7 +148,6 @@ class App extends GetView<CalculatorController> {
           OrangeBtn(
             iconFront: BtnIconType.minus,
             iconBack: BtnIconType.minusReverse,
-            btnkey: BtnKey.MINUS,
             isClicked: controller.minusClicked.value,
             onPressed: () => controller.minusToggle(),
           ),
@@ -182,9 +179,8 @@ class App extends GetView<CalculatorController> {
           OrangeBtn(
             iconFront: BtnIconType.plus,
             iconBack: BtnIconType.plusReverse,
-            btnkey: BtnKey.PLUS,
             isClicked: controller.plusClicked.value,
-            onPressed: () => controller.plusToggle(),
+            onPressed: () => controller.pushPlus(),
           ),
         ],
       ),
@@ -209,7 +205,7 @@ class App extends GetView<CalculatorController> {
             onPressed: () {},
           ),
           EqualBtn(
-            onPressed: () {},
+            onPressed: () => controller.calculate(),
           ),
         ],
       ),

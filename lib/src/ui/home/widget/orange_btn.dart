@@ -1,6 +1,6 @@
 // 생성일 : 2023년 02월 01일 오전 01:31
 // 작성자 : 한상욱
-// 수정일 : 2023년 02월 08일 오후 08:10
+// 수정일 : 2023년 02월 14일 오후 08:10
 // 수정자 : 한상욱
 
 // 사측연산을 하는 오렌지색 버튼 클래스
@@ -9,19 +9,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/btn_color.dart';
 import 'package:flutter_ios_calculator/src/ui/home/widget/btn_size.dart';
 
-enum BtnKey { PLUS, MINUS, MULTIPLY, DIVIDE }
-
 class OrangeBtn extends StatelessWidget {
   final Icon iconFront;
   final Icon iconBack;
-  final BtnKey btnkey;
   final bool isClicked;
   final Function()? onPressed;
   const OrangeBtn({
     super.key,
     required this.iconFront,
     required this.iconBack,
-    required this.btnkey,
     required this.isClicked,
     required this.onPressed,
   });
