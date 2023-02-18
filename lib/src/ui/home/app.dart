@@ -87,7 +87,7 @@ class App extends GetView<CalculatorController> {
             iconFront: BtnIconType.divide,
             iconBack: BtnIconType.divideReverse,
             isClicked: controller.divideClicked.value,
-            onPressed: () => controller.divideToggle(),
+            onPressed: () {},
           ),
         ],
       ),
@@ -118,7 +118,7 @@ class App extends GetView<CalculatorController> {
             iconFront: BtnIconType.multiply,
             iconBack: BtnIconType.multplyReverse,
             isClicked: controller.multiplyClicked.value,
-            onPressed: () => controller.multiplyToggle(),
+            onPressed: () {},
           ),
         ],
       ),
@@ -149,7 +149,7 @@ class App extends GetView<CalculatorController> {
             iconFront: BtnIconType.minus,
             iconBack: BtnIconType.minusReverse,
             isClicked: controller.minusClicked.value,
-            onPressed: () => controller.minusToggle(),
+            onPressed: () {},
           ),
         ],
       ),
@@ -185,7 +185,6 @@ class App extends GetView<CalculatorController> {
         ],
       ),
     );
-    ;
   }
 
   // 버튼 다섯번째 줄
