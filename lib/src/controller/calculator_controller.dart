@@ -17,8 +17,8 @@ class CalculatorController extends GetxController {
   var _multiplyClicked = false.obs; // * 버튼 애니메이션 컨트롤러
   var _divideClicked = false.obs; // / 버튼 애니메이션 컨트롤러
 
-  var _firstNumber = '';
-  var _secondNumber = '';
+  var _lastNumber = '0';
+  var _currentNumber = '';
 
   var _isDot = false;
   var _isBtnClick = false; // 계산기가 num1인지 num2인지 구분하는 척도
@@ -54,13 +54,30 @@ class CalculatorController extends GetxController {
   }
 
   // + 버튼 애니메이션 효과
-  void pushPlus() {
+  pushPlus() {
     plusToggle();
+
+    if (_currentNumber != '') {
+      currentStatus('+');
+      calculate();
+      _lastNumber = _currentNumber;
+      _currentNumber = '';
+      _isDot = false;
+      return;
+    }
+
     if (_plusClicked.value) {
       currentStatus('+');
-    } else {
-      currentStatus('');
+      _lastNumber = _currentNumber;
+      _currentNumber = '';
+      _isDot = false;
+      return;
     }
+
+    currentStatus('');
+
+    _lastNumber = _currentNumber;
+    _currentNumber = '';
     _isDot = false;
   }
 
@@ -79,65 +96,51 @@ class CalculatorController extends GetxController {
     _plusClicked.value = false;
   }
 
+  void reverse() {}
+
   void allClear() {
     calculateBtnInit();
     _isDot = false;
     _displayNumber.value = '';
-    _firstNumber = '';
-    _secondNumber = '';
+    _lastNumber = '0';
+    _currentNumber = '';
   }
 
   pushDotBtn() {
     if (_isDot == true) {
       return;
     }
-    if (_firstNumber == '' && !_isBtnClick) {
-      _firstNumber += '0.';
-      _displayNumber.value = _firstNumber;
-      _isDot = true;
-      return;
-    }
-    if (_secondNumber == '' && _isBtnClick) {
-      _secondNumber += '0.';
-      _displayNumber.value = _secondNumber;
-      _isDot = true;
-      return;
-    }
-    if (!_isBtnClick) {
-      _firstNumber += '.';
-      _displayNumber.value = _firstNumber;
-      _isDot = true;
+
+    if (_currentNumber == '') {
+      _currentNumber += '0.';
+      _displayNumber.value = _currentNumber;
       return;
     }
 
-    _secondNumber += '.';
-    _displayNumber.value = _secondNumber;
-    _isDot = true;
+    _currentNumber += '.';
+    _displayNumber.value = _currentNumber;
 
-    print(_firstNumber);
-    print(_secondNumber);
+    print('$_lastNumber, $_currentNumber');
   }
 
   void pushNumberBtn(String number) {
     // 숫자 버튼이 눌리면 기호 버튼의 애니메이션은 종료됨.
     calculateBtnInit();
-    if (!_isBtnClick) {
-      //
-      _firstNumber += number;
-      _displayNumber.value = _firstNumber;
-    } else {
-      _secondNumber += number;
-      _displayNumber.value = _secondNumber;
-    }
 
-    print(_firstNumber);
-    print(_secondNumber);
+    _currentNumber += number;
+    _displayNumber.value = _currentNumber;
+
+    print('$_lastNumber, $_currentNumber');
   }
 
   plus() {
-    _result.value = double.parse(_firstNumber) + double.parse(_secondNumber);
+    _result.value = double.parse(_lastNumber) + double.parse(_currentNumber);
+    if (_result.value % 1 == 0) {
+      _displayNumber.value = _result.value.toInt().toString();
+
+      return;
+    }
     _displayNumber.value = _result.value.toString();
-    _firstNumber = _result.value.toString();
   }
 
   calculate() {
@@ -147,6 +150,9 @@ class CalculatorController extends GetxController {
     }
 
     if (_currentStatus == '') return;
+
+    _lastNumber = _result.value.toString();
+    print("$_lastNumber, $_currentNumber");
   }
 
   // - 버튼 애니메이션 효과
