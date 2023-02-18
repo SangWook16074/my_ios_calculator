@@ -201,7 +201,7 @@ class App extends GetView<CalculatorController> {
           ),
           BlackBtn(
             type: BlackBtnType.DOT,
-            onPressed: () {},
+            onPressed: () => controller.pushDotBtn(),
           ),
           EqualBtn(
             onPressed: () => controller.calculate(),

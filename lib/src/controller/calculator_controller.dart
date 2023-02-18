@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 
 class CalculatorController extends GetxController {
   var _displayNumber = ''.obs; // UI에서 결과로 보여주는 값.
-  var _result = 0.obs; // num1 과 num2 의 계산결과를 저장하는 값.
+  var _result = 0.0.obs; // num1 과 num2 의 계산결과를 저장하는 값.
   var _plusClicked = false.obs; // + 버튼 애니메이션 컨트롤러
   var _minusClicked = false.obs; // - 버튼 애니메이션 컨트롤러
   var _multiplyClicked = false.obs; // * 버튼 애니메이션 컨트롤러
@@ -20,11 +20,12 @@ class CalculatorController extends GetxController {
   var _firstNumber = '';
   var _secondNumber = '';
 
+  var _isDot = false;
   var _isBtnClick = false; // 계산기가 num1인지 num2인지 구분하는 척도
   var _currentStatus = '';
 
   RxString get displayNumber => _displayNumber;
-  RxInt get result => _result;
+  RxDouble get result => _result;
 
   RxBool get plusClicked => _plusClicked;
   RxBool get minusClicked => _minusClicked;
@@ -60,6 +61,7 @@ class CalculatorController extends GetxController {
     } else {
       currentStatus('');
     }
+    _isDot = false;
   }
 
   void plusToggle() {
@@ -69,20 +71,56 @@ class CalculatorController extends GetxController {
     print('작동 !');
   }
 
+  void calculateBtnInit() {
+    plusInit();
+  }
+
   void plusInit() {
     _plusClicked.value = false;
   }
 
   void allClear() {
-    _plusClicked.value = false;
+    calculateBtnInit();
+    _isDot = false;
     _displayNumber.value = '';
     _firstNumber = '';
     _secondNumber = '';
   }
 
+  pushDotBtn() {
+    if (_isDot == true) {
+      return;
+    }
+    if (_firstNumber == '' && !_isBtnClick) {
+      _firstNumber += '0.';
+      _displayNumber.value = _firstNumber;
+      _isDot = true;
+      return;
+    }
+    if (_secondNumber == '' && _isBtnClick) {
+      _secondNumber += '0.';
+      _displayNumber.value = _secondNumber;
+      _isDot = true;
+      return;
+    }
+    if (!_isBtnClick) {
+      _firstNumber += '.';
+      _displayNumber.value = _firstNumber;
+      _isDot = true;
+      return;
+    }
+
+    _secondNumber += '.';
+    _displayNumber.value = _secondNumber;
+    _isDot = true;
+
+    print(_firstNumber);
+    print(_secondNumber);
+  }
+
   void pushNumberBtn(String number) {
     // 숫자 버튼이 눌리면 기호 버튼의 애니메이션은 종료됨.
-    plusInit();
+    calculateBtnInit();
     if (!_isBtnClick) {
       //
       _firstNumber += number;
@@ -97,7 +135,7 @@ class CalculatorController extends GetxController {
   }
 
   plus() {
-    _result.value = int.parse(_firstNumber) + int.parse(_secondNumber);
+    _result.value = double.parse(_firstNumber) + double.parse(_secondNumber);
     _displayNumber.value = _result.value.toString();
     _firstNumber = _result.value.toString();
   }
