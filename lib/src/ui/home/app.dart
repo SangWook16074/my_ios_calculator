@@ -81,7 +81,7 @@ class App extends GetView<CalculatorController> {
           ),
           greyBtn(
             type: GreyBtnType.PERCENT,
-            onPressed: () {},
+            onPressed: () => controller.changeToPercent(),
           ),
           OrangeBtn(
             iconFront: BtnIconType.divide,

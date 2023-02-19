@@ -153,6 +153,19 @@ class CalculatorController extends GetxController {
 
     _lastNumber = _result.value.toString();
     print("$_lastNumber, $_currentNumber");
+    print(_result.value);
+  }
+
+  // 백분율 버튼
+
+  changeToPercent() {
+    var tmp = (double.parse(_displayNumber.value) / 100);
+    if (tmp % 1 == 0) {
+      _displayNumber.value = tmp.toInt().toString();
+      return;
+    }
+    print(tmp);
+    _displayNumber.value = tmp.toString();
   }
 
   // - 버튼 애니메이션 효과
