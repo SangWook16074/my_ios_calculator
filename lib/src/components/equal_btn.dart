@@ -1,7 +1,8 @@
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/basic_btn.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/btn_color.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
+
+import 'basic_btn.dart';
+import '../constants/btn_color.dart';
+import '../constants/icon_data.dart';
 
 //생성일 : 2023년 02월 08일 오후 04:03
 //생성자 : 한상욱

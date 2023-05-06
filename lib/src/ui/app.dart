@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ios_calculator/src/controller/calculator_controller.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/black_btn.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/grey_botton.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/orange_btn.dart';
 import 'package:get/get.dart';
 
-import 'widget/equal_btn.dart';
+import '../components/black_btn.dart';
+import '../components/equal_btn.dart';
+import '../components/grey_botton.dart';
+import '../constants/icon_data.dart';
+import '../components/orange_btn.dart';
 
 // 작성일 : 2023년 01월 29일 오전 12:00
 // 작성자 : 한상욱
@@ -20,15 +20,13 @@ class App extends GetView<CalculatorController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
-        backgroundColor: Colors.black,
-        body: Column(
-          children: [
-            _result(),
-            _buttons(),
-          ],
-        ),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Column(
+        children: [
+          _result(),
+          _buttons(),
+        ],
       ),
     );
   }
@@ -52,12 +50,12 @@ class App extends GetView<CalculatorController> {
       child: Container(
         height: Get.size.height / 3,
         alignment: Alignment.bottomRight,
-        child: Text(
-          (controller.displayNumber.value == '')
-              ? '0'
-              : controller.displayNumber.value,
-          style: TextStyle(
-              color: Colors.white, fontSize: 80, fontWeight: FontWeight.w200),
+        child: Obx(
+          () => Text(
+            controller.result,
+            style: TextStyle(
+                color: Colors.white, fontSize: 80, fontWeight: FontWeight.w200),
+          ),
         ),
       ),
     );
@@ -71,23 +69,25 @@ class App extends GetView<CalculatorController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          greyBtn(
+          GreyBtn(
             type: GreyBtnType.ALLCLEAR,
-            onPressed: () => controller.allClear(),
+            onPressed: controller.allClear,
           ),
-          greyBtn(
+          GreyBtn(
             type: GreyBtnType.PLUSNMINUS,
-            onPressed: () {},
+            onPressed: controller.convert,
           ),
-          greyBtn(
+          GreyBtn(
             type: GreyBtnType.PERCENT,
-            onPressed: () => controller.changeToPercent(),
+            onPressed: controller.changeToPercent,
           ),
-          OrangeBtn(
-            iconFront: BtnIconType.divide,
-            iconBack: BtnIconType.divideReverse,
-            isClicked: controller.divideClicked.value,
-            onPressed: () {},
+          Obx(
+            () => OrangeBtn(
+              iconFront: BtnIconType.divide,
+              iconBack: BtnIconType.divideReverse,
+              isClicked: controller.divide,
+              onPressed: controller.pushDivideBtn,
+            ),
           ),
         ],
       ),
@@ -114,11 +114,13 @@ class App extends GetView<CalculatorController> {
             type: BlackBtnType.NINE,
             onPressed: () => controller.pushNumberBtn('9'),
           ),
-          OrangeBtn(
-            iconFront: BtnIconType.multiply,
-            iconBack: BtnIconType.multplyReverse,
-            isClicked: controller.multiplyClicked.value,
-            onPressed: () {},
+          Obx(
+            () => OrangeBtn(
+              iconFront: BtnIconType.multiply,
+              iconBack: BtnIconType.multplyReverse,
+              isClicked: controller.multiply,
+              onPressed: controller.pushMultiplyBtn,
+            ),
           ),
         ],
       ),
@@ -145,11 +147,13 @@ class App extends GetView<CalculatorController> {
             type: BlackBtnType.SIX,
             onPressed: () => controller.pushNumberBtn('6'),
           ),
-          OrangeBtn(
-            iconFront: BtnIconType.minus,
-            iconBack: BtnIconType.minusReverse,
-            isClicked: controller.minusClicked.value,
-            onPressed: () {},
+          Obx(
+            () => OrangeBtn(
+              iconFront: BtnIconType.minus,
+              iconBack: BtnIconType.minusReverse,
+              isClicked: controller.minus,
+              onPressed: controller.pushMinusBtn,
+            ),
           ),
         ],
       ),
@@ -176,11 +180,13 @@ class App extends GetView<CalculatorController> {
             type: BlackBtnType.THREE,
             onPressed: () => controller.pushNumberBtn('3'),
           ),
-          OrangeBtn(
-            iconFront: BtnIconType.plus,
-            iconBack: BtnIconType.plusReverse,
-            isClicked: controller.plusClicked.value,
-            onPressed: () => controller.pushPlus(),
+          Obx(
+            () => OrangeBtn(
+              iconFront: BtnIconType.plus,
+              iconBack: BtnIconType.plusReverse,
+              isClicked: controller.plus,
+              onPressed: controller.pushPlusBtn,
+            ),
           ),
         ],
       ),
@@ -201,10 +207,10 @@ class App extends GetView<CalculatorController> {
           ),
           BlackBtn(
             type: BlackBtnType.DOT,
-            onPressed: () => controller.pushDotBtn(),
+            onPressed: controller.pushDotBtn,
           ),
           EqualBtn(
-            onPressed: () => controller.calculate(),
+            onPressed: controller.calculate,
           ),
         ],
       ),

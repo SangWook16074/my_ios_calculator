@@ -5,8 +5,9 @@
 // enum 클래스를 통해서 숫자에 따른 모양과 child 프로퍼티 구분
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/basic_btn.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/btn_color.dart';
+
+import 'basic_btn.dart';
+import '../constants/btn_color.dart';
 
 enum BlackBtnType {
   ONE,

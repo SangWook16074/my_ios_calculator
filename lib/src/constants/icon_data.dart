@@ -75,4 +75,9 @@ class BtnIconType {
         'AC',
         style: TextStyle(fontSize: 30, color: CupertinoColors.black),
       );
+
+  static Text get clear => Text(
+        'C',
+        style: TextStyle(fontSize: 30, color: CupertinoColors.black),
+      );
 }

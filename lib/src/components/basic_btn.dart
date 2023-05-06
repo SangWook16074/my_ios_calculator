@@ -11,7 +11,7 @@
 // 모든 버튼들의 기본이 되는 틀 역할
 // 중복되는 소스를 방지하면서 클린 아키텍처를 도와줌.
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/btn_size.dart';
+import 'package:flutter_ios_calculator/src/constants/btn_size.dart';
 
 enum BtnShape { CIRCLE, FLAT }
 

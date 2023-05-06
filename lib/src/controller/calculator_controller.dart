@@ -9,114 +9,123 @@ import 'package:get/get.dart';
 
 // 메소드를 이용해서 계산을 진행함.
 
+enum Calculate { PLUS, MINUS, MULTIPLY, DIVIDE, NONE }
+
 class CalculatorController extends GetxController {
-  var _currentValue = ''.obs; // UI에서 결과로 보여주는 값.
-  var _plusClicked = false.obs; // + 버튼 애니메이션 컨트롤러
-  var _minusClicked = false.obs; // - 버튼 애니메이션 컨트롤러
-  var _multiplyClicked = false.obs; // * 버튼 애니메이션 컨트롤러
-  var _divideClicked = false.obs; // / 버튼 애니메이션 컨트롤러
+  RxString _result = '0'.obs;
+  num num1 = 0;
+  num num2 = 0;
+  Calculate status = Calculate.NONE;
 
-  RxString get displayNumber => _currentValue;
+  bool pushCalculateBtn = false;
+  RxBool _initStatus = true.obs;
+  RxBool _pushPlus = false.obs;
+  RxBool _pushMinus = false.obs;
+  RxBool _pushMultiply = false.obs;
+  RxBool _pushDivide = false.obs;
 
-  RxBool get plusClicked => _plusClicked;
-  RxBool get minusClicked => _minusClicked;
-  RxBool get multiplyClicked => _multiplyClicked;
-  RxBool get divideClicked => _divideClicked;
-
-  // + 버튼 애니메이션 효과
-  pushPlus() {
-    initClick();
-    plusToggle();
-  }
-
-  void initClick() {
-    _plusClicked.value = false;
-    _minusClicked.value = false;
-    _multiplyClicked.value = false;
-    _divideClicked.value = false;
-  }
-
-  void plusToggle() {
-    _plusClicked.value = true;
-  }
-
-  void calculateBtnInit() {
-    plusInit();
-  }
-
-  void plusInit() {
-    _plusClicked.value = false;
-  }
-
-  void reverse() {}
+  String get result => _result.value;
+  bool get init => _initStatus.value;
+  bool get plus => _pushPlus.value;
+  bool get minus => _pushMinus.value;
+  bool get multiply => _pushMultiply.value;
+  bool get divide => _pushDivide.value;
 
   void allClear() {
-    calculateBtnInit();
+    initPushCalculateStatus();
+    initResultNumber();
+    num1 = 0;
+    num2 = 0;
+  }
 
-    _currentValue.value = '';
+  void initResultNumber() {
+    _result.value = '0';
+  }
+
+  void initPushCalculateStatus() {
+    _pushPlus.value = false;
+    _pushMinus.value = false;
+    _pushMultiply.value = false;
+    _pushDivide.value = false;
+  }
+
+  void pushNumberBtn(String value) {
+    if (pushCalculateBtn) {
+      initResultNumber();
+      initPushCalculateStatus();
+      pushCalculateBtn = false;
+    }
+
+    if (_result.value[0] == '0' && _result.value.length == 1) {
+      _result.value = '';
+    }
+    _result.value += value;
+  }
+
+  void pushCalculateBtnProgress() {
+    num1 = num.parse(_result.value);
+    initPushCalculateStatus();
+    pushCalculateBtn = true;
+    _pushPlus.value = true;
+  }
+
+  void pushPlusBtn() {
+    pushCalculateBtnProgress();
+    status = Calculate.PLUS;
+  }
+
+  void pushMinusBtn() {
+    pushCalculateBtnProgress();
+    status = Calculate.MINUS;
+  }
+
+  void pushMultiplyBtn() {
+    pushCalculateBtnProgress();
+    status = Calculate.MULTIPLY;
+  }
+
+  void pushDivideBtn() {
+    pushCalculateBtnProgress();
+    status = Calculate.DIVIDE;
   }
 
   void pushDotBtn() {
-    if (_currentValue.value.contains('.')) {
+    if (_result.value.contains('.')) {
       return;
     }
+    _result.value += '.';
+  }
 
-    if (_currentValue.value == '') {
-      _currentValue.value += '0.';
-      return;
+  void changeToPercent() {
+    _result.value = (num.parse(_result.value) / 100).toString();
+  }
+
+  void calculate() {
+    num2 = num.parse(_result.value);
+    switch (status) {
+      case Calculate.PLUS:
+        _result.value = (num1 + num2).toString();
+        break;
+      case Calculate.MINUS:
+        _result.value = (num1 - num2).toString();
+        break;
+      case Calculate.MULTIPLY:
+        _result.value = (num1 * num2).toString();
+        break;
+      case Calculate.DIVIDE:
+        if (num2 == 0) {
+          _result.value = '오류';
+          return;
+        }
+        _result.value = (num1 / num2).toString();
+        break;
+      case Calculate.NONE:
+        break;
     }
-
-    _currentValue.value += '.';
+    print(_result.value);
   }
 
-  void pushNumberBtn(String number) {
-    // 숫자 버튼이 눌리면 기호 버튼의 애니메이션은 종료됨.
-    calculateBtnInit();
-    if (_currentValue.value == '') {
-      _currentValue.value = number;
-      return;
-    }
-
-    _currentValue.value += number;
-  }
-
-  plus() {}
-
-  calculate() {}
-
-  // 백분율 버튼
-
-  num convertToInt(double number) {
-    if (number % 1 == 0) {
-      return number.toInt();
-    } else {
-      return number;
-    }
-  }
-
-  changeToPercent() {
-    if (_currentValue.value == '') {
-      _currentValue.value = '0';
-    }
-    var tmp = (num.parse(_currentValue.value) / 100);
-    _currentValue.value = convertToInt(tmp).toString();
-  }
-
-  // - 버튼 애니메이션 효과
-  void minusToggle() {
-    //initBtn();
-    _minusClicked.value = !_minusClicked.value;
-  }
-
-  // * 버튼 애니메이션 효과
-  void multiplyToggle() {
-    //initBtn();
-    _multiplyClicked.value = !_multiplyClicked.value;
-  }
-
-  // / 버튼 애니메이션 효과
-  void divideToggle() {
-    //initBtn();
-    _divideClicked.value = !_divideClicked.value;
+  void convert() {
+    _result.value = (num.parse(_result.value) * -1).toString();
   }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/basic_btn.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/btn_color.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/btn_size.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
+import 'package:flutter_ios_calculator/src/controller/calculator_controller.dart';
+import 'package:get/get.dart';
+import 'basic_btn.dart';
+import '../constants/btn_color.dart';
+import '../constants/btn_size.dart';
+import '../constants/icon_data.dart';
 
 // 생성일 : 2023년 01월 31일 오전 01:30
 // 작성자 : 한상욱
@@ -15,10 +17,10 @@ import 'package:flutter_ios_calculator/src/ui/home/widget/icon_data.dart';
 
 enum GreyBtnType { ALLCLEAR, PLUSNMINUS, PERCENT }
 
-class greyBtn extends StatelessWidget {
+class GreyBtn extends GetView<CalculatorController> {
   final GreyBtnType type;
   final Function() onPressed;
-  const greyBtn({
+  const GreyBtn({
     Key? key,
     required this.type,
     required this.onPressed,
@@ -40,12 +42,16 @@ class greyBtn extends StatelessWidget {
     return SizedBox(
       width: BtnSize.btnRound,
       height: BtnSize.btnRound,
-      child: CupertinoButton(
-        color: BtnColor.silver,
-        padding: const EdgeInsets.all(8.0),
-        borderRadius: BorderRadius.circular(100),
-        child: BtnIconType.allClear,
-        onPressed: onPressed,
+      child: Obx(
+        () => CupertinoButton(
+          color: BtnColor.silver,
+          padding: const EdgeInsets.all(8.0),
+          borderRadius: BorderRadius.circular(100),
+          child: (controller.result == '0')
+              ? BtnIconType.allClear
+              : BtnIconType.clear,
+          onPressed: onPressed,
+        ),
       ),
     );
   }

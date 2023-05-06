@@ -6,14 +6,15 @@
 // 사측연산을 하는 오렌지색 버튼 클래스
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/btn_color.dart';
-import 'package:flutter_ios_calculator/src/ui/home/widget/btn_size.dart';
+
+import '../constants/btn_color.dart';
+import '../constants/btn_size.dart';
 
 class OrangeBtn extends StatelessWidget {
   final Icon iconFront;
   final Icon iconBack;
   final bool isClicked;
-  final Function()? onPressed;
+  final void Function() onPressed;
   const OrangeBtn({
     super.key,
     required this.iconFront,
