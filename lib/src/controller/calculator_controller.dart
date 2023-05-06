@@ -1,8 +1,9 @@
+import 'package:flutter/src/gestures/drag_details.dart';
 import 'package:get/get.dart';
 
 // 생성일 : 2023년 02월 05일 오후 09:52
 // 작성자 : 한상욱
-// 최종수정일 : 2023년 02월 14일 오전 11:57
+// 최종수정일 : 2023년 05월 06일 오전 11:57
 // 최종수정자 : 한상욱
 
 // 계산함수로직을 분리하기위한 CalculatorController 클래스임.
@@ -127,5 +128,18 @@ class CalculatorController extends GetxController {
 
   void convert() {
     _result.value = (num.parse(_result.value) * -1).toString();
+  }
+
+  void remove(DragUpdateDetails details) {
+    print('스와이프');
+    if (_result.value.length > 1 && _result.value != '0') {
+      _result.value = _result.value.substring(0, _result.value.length - 1);
+      return;
+    }
+
+    if (_result.value.length == 1 && _result.value != '0') {
+      initResultNumber();
+      return;
+    }
   }
 }
