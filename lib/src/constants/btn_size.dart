@@ -7,5 +7,5 @@ import 'package:get/get.dart';
 
 class BtnSize {
   static double get btnRound => Get.size.width / 4 - 15;
-  static double get btnFlatWidth => 2 * Get.size.width / 4;
+  static double get btnFlatWidth => 2 * Get.size.width / 4 - 15;
 }

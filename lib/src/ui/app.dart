@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ios_calculator/src/constants/veiw_ratio.dart';
 import 'package:flutter_ios_calculator/src/controller/calculator_controller.dart';
 import 'package:get/get.dart';
 
@@ -20,26 +21,30 @@ class App extends GetView<CalculatorController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Column(
-        children: [
-          _result(),
-          _buttons(),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Column(
+          children: [
+            Flexible(flex: ViewRatio.ratio['top']!, child: _result()),
+            Flexible(flex: ViewRatio.ratio['bottom']!, child: _buttons()),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buttons() {
-    return Column(
-      children: [
-        _buttonsRow1(),
-        _buttonsRow2(),
-        _buttonsRow3(),
-        _buttonsRow4(),
-        _buttonsRow5(),
-      ],
+    return SizedBox(
+      child: Column(
+        children: [
+          _buttonsRow1(),
+          _buttonsRow2(),
+          _buttonsRow3(),
+          _buttonsRow4(),
+          _buttonsRow5(),
+        ],
+      ),
     );
   }
 
@@ -48,13 +53,17 @@ class App extends GetView<CalculatorController> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: Get.size.height / 3,
         alignment: Alignment.bottomRight,
-        child: Obx(
-          () => Text(
-            controller.result,
-            style: TextStyle(
-                color: Colors.white, fontSize: 80, fontWeight: FontWeight.w200),
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: Obx(
+            () => Text(
+              controller.result,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 80,
+                  fontWeight: FontWeight.w200),
+            ),
           ),
         ),
       ),

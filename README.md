@@ -1,6 +1,6 @@
 # flutter_ios_calculator
 
-A new Flutter project.
+GetX를 이용해서 제작한 IOS 계산기 앱입니다.
 
 ## Getting Started
 
