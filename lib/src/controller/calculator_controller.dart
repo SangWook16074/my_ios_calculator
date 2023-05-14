@@ -37,6 +37,7 @@ class CalculatorController extends GetxController {
     initResultNumber();
     num1 = 0;
     num2 = 0;
+    status = Calculate.NONE;
   }
 
   void initResultNumber() {
@@ -63,31 +64,55 @@ class CalculatorController extends GetxController {
     _result.value += value;
   }
 
-  void pushCalculateBtnProgress() {
+  void pushCalculateBtnProgress(Calculate type) {
     num1 = num.parse(_result.value);
     initPushCalculateStatus();
+
+    switch (type) {
+      case Calculate.PLUS:
+        _pushPlus.value = true;
+        break;
+      case Calculate.MINUS:
+        _pushMinus.value = true;
+        break;
+      case Calculate.MULTIPLY:
+        _pushMultiply.value = true;
+        break;
+      case Calculate.DIVIDE:
+        _pushDivide.value = true;
+        break;
+      case Calculate.NONE:
+        break;
+    }
     pushCalculateBtn = true;
-    _pushPlus.value = true;
   }
 
   void pushPlusBtn() {
-    pushCalculateBtnProgress();
     status = Calculate.PLUS;
+    pushCalculateBtnProgress(status);
+    print(status);
+    print(_pushPlus);
   }
 
   void pushMinusBtn() {
-    pushCalculateBtnProgress();
     status = Calculate.MINUS;
+    pushCalculateBtnProgress(status);
+    print(status);
+    print(_pushMinus);
   }
 
   void pushMultiplyBtn() {
-    pushCalculateBtnProgress();
     status = Calculate.MULTIPLY;
+    pushCalculateBtnProgress(status);
+    print(status);
+    print(_pushMultiply);
   }
 
   void pushDivideBtn() {
-    pushCalculateBtnProgress();
     status = Calculate.DIVIDE;
+    pushCalculateBtnProgress(status);
+    print(status);
+    print(_pushDivide);
   }
 
   void pushDotBtn() {
