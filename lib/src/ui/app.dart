@@ -21,15 +21,13 @@ class App extends GetView<CalculatorController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: Column(
-          children: [
-            Flexible(flex: ViewRatio.ratio['top']!, child: _result()),
-            Flexible(flex: ViewRatio.ratio['bottom']!, child: _buttons()),
-          ],
-        ),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Column(
+        children: [
+          Flexible(flex: ViewRatio.ratio['top']!, child: _result()),
+          Flexible(flex: ViewRatio.ratio['bottom']!, child: _buttons()),
+        ],
       ),
     );
   }
@@ -57,7 +55,7 @@ class App extends GetView<CalculatorController> {
         child: Align(
           alignment: Alignment.bottomRight,
           child: Obx(
-            () => Text(
+            () => SelectableText(
               controller.result,
               style: TextStyle(
                   color: Colors.white,

@@ -1,4 +1,3 @@
-import 'package:flutter/src/gestures/drag_details.dart';
 import 'package:get/get.dart';
 
 // 생성일 : 2023년 02월 05일 오후 09:52
@@ -45,10 +44,10 @@ class CalculatorController extends GetxController {
   }
 
   void initPushCalculateStatus() {
-    _pushPlus.value = false;
-    _pushMinus.value = false;
-    _pushMultiply.value = false;
-    _pushDivide.value = false;
+    _pushPlus(false);
+    _pushMinus(false);
+    _pushMultiply(false);
+    _pushDivide(false);
   }
 
   void pushNumberBtn(String value) {
@@ -59,7 +58,7 @@ class CalculatorController extends GetxController {
     }
 
     if (_result.value[0] == '0' && _result.value.length == 1) {
-      _result.value = '';
+      _result('');
     }
     _result.value += value;
   }
@@ -70,16 +69,16 @@ class CalculatorController extends GetxController {
 
     switch (type) {
       case Calculate.PLUS:
-        _pushPlus.value = true;
+        _pushPlus(true);
         break;
       case Calculate.MINUS:
-        _pushMinus.value = true;
+        _pushMinus(true);
         break;
       case Calculate.MULTIPLY:
-        _pushMultiply.value = true;
+        _pushMultiply(true);
         break;
       case Calculate.DIVIDE:
-        _pushDivide.value = true;
+        _pushDivide(true);
         break;
       case Calculate.NONE:
         break;
@@ -123,27 +122,37 @@ class CalculatorController extends GetxController {
   }
 
   void changeToPercent() {
-    _result.value = (num.parse(_result.value) / 100).toString();
+    _result((num.parse(_result.value) / 100).toString());
+  }
+
+  doubleToInt(double d) {
+    if (d != d.round()) {
+      return d;
+    }
+    return d.toInt();
   }
 
   void calculate() {
     num2 = num.parse(_result.value);
     switch (status) {
       case Calculate.PLUS:
-        _result.value = (num1 + num2).toString();
+        _result(doubleToInt((num1 + num2).toDouble()).toString());
         break;
       case Calculate.MINUS:
-        _result.value = (num1 - num2).toString();
+        _result(doubleToInt((num1 - num2).toDouble()).toString());
+
         break;
       case Calculate.MULTIPLY:
-        _result.value = (num1 * num2).toString();
+        _result(doubleToInt((num1 * num2).toDouble()).toString());
+
         break;
       case Calculate.DIVIDE:
         if (num2 == 0) {
           _result.value = '오류';
           return;
         }
-        _result.value = (num1 / num2).toString();
+        _result(doubleToInt((num1 / num2).toDouble()).toString());
+
         break;
       case Calculate.NONE:
         break;
@@ -152,19 +161,6 @@ class CalculatorController extends GetxController {
   }
 
   void convert() {
-    _result.value = (num.parse(_result.value) * -1).toString();
-  }
-
-  void remove(DragUpdateDetails details) {
-    print('스와이프');
-    if (_result.value.length > 1 && _result.value != '0') {
-      _result.value = _result.value.substring(0, _result.value.length - 1);
-      return;
-    }
-
-    if (_result.value.length == 1 && _result.value != '0') {
-      initResultNumber();
-      return;
-    }
+    _result((num.parse(_result.value) * -1).toString());
   }
 }
