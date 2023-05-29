@@ -64,7 +64,28 @@ class CalculatorController extends GetxController {
   }
 
   void pushCalculateBtnProgress(Calculate type) {
-    num1 = num.parse(_result.value);
+    if (num1 != 0) {
+      switch (status) {
+        case Calculate.PLUS:
+          num1 += num.parse(_result.value);
+          break;
+        case Calculate.MINUS:
+          num1 -= num.parse(_result.value);
+          break;
+        case Calculate.MULTIPLY:
+          num1 *= num.parse(_result.value);
+          break;
+        case Calculate.DIVIDE:
+          num1 /= num.parse(_result.value);
+
+          break;
+        default:
+          break;
+      }
+      _result(num1.toString());
+    } else {
+      num1 = num.parse(_result.value);
+    }
     initPushCalculateStatus();
 
     switch (type) {
@@ -110,8 +131,6 @@ class CalculatorController extends GetxController {
   void pushDivideBtn() {
     status = Calculate.DIVIDE;
     pushCalculateBtnProgress(status);
-    print(status);
-    print(_pushDivide);
   }
 
   void pushDotBtn() {
@@ -134,6 +153,7 @@ class CalculatorController extends GetxController {
 
   void calculate() {
     num2 = num.parse(_result.value);
+    initPushCalculateStatus();
     switch (status) {
       case Calculate.PLUS:
         _result(doubleToInt((num1 + num2).toDouble()).toString());
